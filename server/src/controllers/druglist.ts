@@ -4,12 +4,13 @@ import router from "../routes/routes.js";
 import { Dataset } from "crawlee";
 import { labels } from "../constants.js";
 
-class ScrapingControler {
+class DrugListControler {
+ 
   public async scrape(req: Request, res: Response) {
-    const url = req.query.url;
+    const query = req.query.query;
 
-    if (!url) {
-      return res.status(400).send({ error: "URL parameter is required" });
+    if (!query) {
+      return res.status(400).send({ error: "Query parameter is required" });
     }
 
     const crawler = new CheerioCrawler({
@@ -20,17 +21,19 @@ class ScrapingControler {
     try {
       await crawler.run([
         {
-          url: url as string,
+          url: `https://go.drugbank.com/unearth/q?searcher=drugs&query=${query}&button=`,
           label: labels.DrugList,
         },
       ]);
 
-      const data = await Dataset.getData();
-      res.status(200).send(data);
+      const data = (await Dataset.getData()).items[0];
+      console.log(data)
+      res.status(200).json(data);
     } catch (error) {
+      console.log(error)
       res.status(500).send({ error: "Scraping failed", details: error });
     }
   }
 }
 
-export default ScrapingControler;
+export default DrugListControler;

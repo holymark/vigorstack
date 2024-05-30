@@ -4,5 +4,7 @@ export const enum labels {
   DrugPrices = "DrugPrices",
   News = "News",
   Symptoms = "Symptoms",
-  Start = "Start",
+  DrugListStart = "DrugListStart",
 }
+
+
