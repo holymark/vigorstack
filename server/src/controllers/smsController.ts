@@ -3,7 +3,7 @@ import africastalking from "africastalking";
 
 class SmsController {
   private atOptions = {
-    apiKey: "8ce7749324ed35237b86642d0c5466bba729ec8a627d45b8cb8670ae9774d2a5",
+    apiKey: "72bfe7b0375e5896ede15b8952736bb2c513a320b578d1f93538d64df01772c1",
     username: "sandbox",
   };
 
@@ -14,8 +14,8 @@ class SmsController {
   public async sendSms(req: Request, res: Response) {
     try {
       const result = await this.initAt().SMS.send({
-        to: "+2347056715182",
-        message: "Ninja boy holy",
+        to: req.body.to,
+        message: req.body.message,
         from: "Hech Mark",
       });
       console.log(res);
