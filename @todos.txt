@@ -1,0 +1,56 @@
+-----API STRUCTURE-----
+((SCRAPERS))
+1. Scrape ** (https://go.drugbank.com/unearth/q?searcher=drugs&query=tramol&button=)
+  - For getting list of drugs available, and or for getting drug infomation
+
+2. Scrape ** (https://www.drugs.com/alpha/b.html)
+  - For getting list of all drugs alphabetically
+
+3. Scrape ** (https://www.drugs.com/price-guide/{DRUG_NAME})
+  - For getting drug prices and meta infomation
+
+4. Scrape ** (https://www.mayoclinic.org/symptom-checker/select-symptom/itt-20009075),
+             (https://www.mayoclinic.org/symptom-checker/eye-discomfort-and-redness-in-adults-adult/related-factors/itt-20009075)
+             (https://www.mayoclinic.org/symptom-checker/ear-problems-in-children-child/related-factors/itt-20009075)
+  - For Symptoms List and helpful infomation (Children and adult)
+
+5. Scrape ** ()
+  - For Health News
+
+((ROUTES))
+/send-sms
+/auth (maybe)
+/news
+/available-drugs
+/drug-info
+/drug-prices/list
+/drug-prices/price/id
+/
+
+
+-----TEMPLATES-----
+const anouncer = (constructor: Function) => console.log("Anouncer: User creation begins")
+
+
+@anouncer
+class User {
+    constructor(user: String){
+        console.log("User was created)
+    }
+}
+
+const user = new User("Bomboi")
+console.log(user)
+........................................
+
+class NewsController {
+    public fetch  async (req: Request, res: Response){
+        const news = "{info: 'yes bs djb d'}"
+
+        res.status(200).send(news)
+    }
+} 
+
+
+const news = NewsController()
+router.get("/all", news.fetch)
